@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--Created By Gustaf Sterner 2012-11-29-->
+<html>
+<head>
+<title>Sternplot - a simple online plotter</title>
+</head>
+<body>
+<script src="evaluator.js"></script>
+<script src="transforms.js"></script>
+<script src="plotmain.js"></script>
+<script>
+function callPlot(){
+    var expr = document.getElementById('expression');
+    var symbol = document.getElementById('symbol');
+    var xmin = document.getElementById('xmin');
+    var xstep = document.getElementById('xstep');
+    var xmax = document.getElementById('xmax');
+    plot(expr.value, symbol.value, parseFloat(xmin.value), parseFloat(xstep.value), parseFloat(xmax.value))
+}
+</script>
+<p>Variable Name
+<input type='text' id='symbol' />
+</p>
+<p>Variable Min
+<input type='number' id='xmin' />
+</p>
+<p>Variable Step
+<input type='number' id='xstep' />
+</p>
+<p>Variable Max
+<input type='number' id='xmax' />
+</p>
+<p>Function to plot
+<input type='text' id='expression' />
+<input type='button' onclick='callPlot()' value='Plot' />
+</p>
+
+<canvas id="plotCanvas" width="500" height="200" style="border:1px solid #000000;"></canvas> 
+</body>
+</html>
