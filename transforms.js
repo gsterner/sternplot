@@ -12,18 +12,29 @@ function getMinOfArray(numArray) {
 }
 
 
-function transformToPlotCoordinates(plotLength, realLength, translation ) {
-    return plotLength / realLength * translation;
+function transformToPlotCoordinates(plotLength, realLength, translation, frameStart ) {
+    return plotLength / realLength * translation + frameStart;
 }
 
 
-function transformX(width, xmax, xmin, xval ) {
-    return transformToPlotCoordinates (width, xmax - xmin, xval - xmin); 
+function transformX(width, xmax, xmin, xval, frameStart, frameEnd ) {
+    return transformToPlotCoordinates (width - frameStart - frameEnd, xmax - xmin, xval - xmin, frameStart); 
 }
 
-function transformY(height, ymax, ymin, yval ) {
-    return transformToPlotCoordinates (height, ymax - ymin, ymax - yval); 
+function transformY(height, ymax, ymin, yval , frameStart, frameEnd ) {
+    return transformToPlotCoordinates (height - frameStart - frameEnd, ymax - ymin, ymax - yval,  frameStart); 
 }
+
+function transformArrayToCoord(array, canvasWidth, transform, frameStart, frameEnd) {
+    var vmin = getMinOfArray(array);
+    var vmax = getMaxOfArray(array);
+    var coordArray = [];
+    for (i in array) {
+        coordArray.push(transform(canvasWidth, vmax, vmin, array[i], frameStart, frameEnd));
+    }
+    return coordArray
+}
+
 
 function transformXArrayToCoord(xRealArray, canvasWidth) {
     var xmin = getMinOfArray(xRealArray);
