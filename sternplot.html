@@ -3,6 +3,82 @@
 <html>
 <head>
 <title>Sternplot - a simple online plotter</title>
+<style type="text/css">
+body{
+font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+p, h1, form, button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ----------- My Form ----------- */
+.myform{
+margin:0 auto;
+width:440px;
+padding:30px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:180px;
+float:left;
+padding:2px 0px;
+}
+#stylized .small{
+color:#666666;
+display:block;
+font-size:10px;
+font-weight:normal;
+text-align:right;
+width:180px;
+}
+#stylized input{
+float:left;
+font-size:14px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:220px;
+margin:2px 0 20px 10px;
+}
+#stylized button{
+clear:both;
+margin-left:160px;
+margin-bottom:20px;
+width:120px;
+height:25px;
+text-align:center;
+line-height:20px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+background:#6495ED;
+border: 0px solid #2B578A;
+}
+#stylized canvas{
+background:#FFFFFF;
+border:solid 1px #aacfe4;
+margin-left: auto;
+margin-right: auto;
+}
+</style>
 </head>
 <body>
 <script src="evaluator.js"></script>
@@ -18,23 +94,37 @@ function callPlot(){
     plot(expr.value, symbol.value, parseFloat(xmin.value), parseFloat(xstep.value), parseFloat(xmax.value))
 }
 </script>
-<p>Variable Name
-<input type='text' id='symbol' />
-</p>
-<p>Variable Min
-<input type='number' id='xmin' />
-</p>
-<p>Variable Step
-<input type='number' id='xstep' />
-</p>
-<p>Variable Max
-<input type='number' id='xmax' />
-</p>
-<p>Function to plot
-<input type='text' id='expression' />
-<input type='button' onclick='callPlot()' value='Plot' />
-</p>
 
-<canvas id="plotCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas> 
+<div id="stylized" class="myform">
+<label>Variable
+<span class="small">Variable Name. E.g. "x". Variables are case sensitive</span>
+</label>
+<input type='text' id='symbol' />
+
+<label>Min
+<span class="small">Variable minimum. Start value of your variable. A number.</span>
+</label>
+<input type='number' id='xmin' />
+
+<label>Step
+<span class="small">Variable minimum. Step increment of your variable. A number.</span>
+</label>
+<input type='number' id='xstep' />
+
+<label>Max
+<span class="small">Variable maximum. End value of your variable. A number.</span>
+</label>
+<input type='number' id='xmax' />
+
+<label>Function
+<span class="small">Function that is evaluated for each variable value. E.g. "x+5*x*x"</span>
+</label>
+<input type='text' id='expression' />
+<!--input type='button' onclick='callPlot()' value='Plot' /!-->
+<button type="submit" onclick='callPlot()'>Plot</button>
+
+<canvas id="plotCanvas" width="440" height="440"></canvas> 
+
+</div>
 </body>
 </html>
