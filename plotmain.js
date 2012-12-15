@@ -11,13 +11,21 @@ function range(start, end, step)
 }
 
 function drawFrame(ctx, canvas_width, canvas_height, framex, framey) {
+    ctx.strokeStyle = '#708090';
     ctx.strokeRect(framex,
 	           framey,
                    canvas_width - 2 * framex,
 		   canvas_height - 2 * framey) 	
 }
 
+function addExpression(ctx, expr, texty) {
+    ctx.font="14px Arial";
+    ctx.fillText(expr,10,texty);
+}
+
 function drawLine(ctx, x_values, y_values) {
+    ctx.strokeStyle = '#00f';
+    ctx.lineWidth   = 2;
     ctx.moveTo(x_values[0],y_values[0]);
     for ( i = 1; i < x_values.length; i++) {
         ctx.lineTo(x_values[i],y_values[i]);
@@ -36,7 +44,7 @@ function drawOnCanvas(xArray, yArray, expr) {
     var x_values = transformArrayToCoord(xArray, canvas_width, transformX, frame_width, frame_width)
     var y_values = transformArrayToCoord(yArray, canvas_height, transformY, frame_height, frame_height)
 
-    ctx.fillText(expr, 10, 10);    
+    addExpression(ctx, expr, canvas_height * 0.05)	
     drawFrame(ctx, canvas_width, canvas_height, canvas_width * 0.1, canvas_height * 0.1)
     drawLine(ctx, x_values, y_values)
 }
