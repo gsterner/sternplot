@@ -45,6 +45,11 @@ function drawOnCanvas(xArray, yArray, expr) {
     var x_values = transformArrayToCoord(xArray, canvas_width, transformX, frame_width, frame_width)
     var y_values = transformArrayToCoord(yArray, canvas_height, transformY, frame_height, frame_height)
 
+    //testing Transform refactoring
+    var trans = new Transform(xArray, yArray, canvas_width, canvas_height);
+    var xtest = trans.xCoordinate(5);
+    var ytest = trans.yCoordinate(100);	
+    //***	
     ctx.clearRect(0, 0, canvas_width, canvas_width);	
     addExpression(ctx, expr, canvas_height * 0.05)	
     drawFrame(ctx, canvas_width, canvas_height, canvas_width * 0.1, canvas_height * 0.1)
